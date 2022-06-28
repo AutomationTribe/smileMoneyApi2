@@ -1,0 +1,4 @@
+{
+    "validEmail" : "foo@yahoo.com",
+    "invalidEmail" : "foo"
+}
