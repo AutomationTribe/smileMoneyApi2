@@ -1,12 +1,12 @@
 ///<reference types="cypress" />
 describe("Customer Creation",function(){
 
-    this.beforeEach("authenticate", ()=>{
+  /*  this.beforeEach("authenticate", ()=>{
         cy.authenticate().as("authToken");
-    })
+    })*/
 
     before("Remove test user",()=>{
-
+        cy.authenticate().as("authToken");
         cy.task('queryDb',"select * from smilemoney.customer where bvn = 22271677774;").then((result) =>{
             
             if(result.length > 0){
@@ -19,8 +19,7 @@ describe("Customer Creation",function(){
                 cy.log("Not found")
             }
 
-        })
-        
+        })   
     });
 
 
@@ -29,7 +28,6 @@ describe("Customer Creation",function(){
             cy.request({
                 method: "POST",
                 url:"https://smilemoney-sandbox.renmoney.com/customer/creation",
-                failOnStatusCode: false,
                 headers:{
                     Authorization: `Bearer ${$token}`
                 },
@@ -38,7 +36,7 @@ describe("Customer Creation",function(){
                    "phoneNumber" : "07068181972",
                    "bankId" : "000013",
                    "accountNumber" : "0040054466",
-                   "pin":"293748"
+                   "pin":"2937"
                 }
             }).should((response) =>{
                 expect(response.status).to.eq(200);
@@ -48,27 +46,9 @@ describe("Customer Creation",function(){
         })
         })
 
-        it("should not create customer with already exisitng phone number",()=>{
-            cy.get('@authToken').then(($token) =>{
-                cy.request({
-                    method: "POST",
-                    url:"https://smilemoney-sandbox.renmoney.com/customer/creation",
-                    failOnStatusCode: false,
-                    headers:{
-                        Authorization: `Bearer ${$token}`
-                    },
-                    body:{
-                       "bvn":"22271677774",
-                       "phoneNumber" : "07068181972",
-                       "bankId" : "000013",
-                       "accountNumber" : "0040054466",
-                       "pin":"293748"
-                    }
-                }).should((response) =>{
-                    expect(response.status).to.eq(406);
-                    expect(response.body.status).to.eq("failed");
-                    expect(response.body.message).to.eq("Customer phone number already exist");
-                })
-            })
-            })
+       /* it("should not create customer with already exist bvn",()=>{
+            
+        })*/
+
+     
 })

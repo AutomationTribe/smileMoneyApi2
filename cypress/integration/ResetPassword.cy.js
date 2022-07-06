@@ -1,18 +1,15 @@
 ///<reference types="cypress" />
 
-let otp,resetToken;
 describe("Reset password", function(){
-
+    let otp,resetToken;
     before("Get Reset Token and OTP from fixture",function(){
-        cy.fixture("passwordrecovery").then(function(data){
-            this.token = data.reset_token;
-            this.otp = data.otp;
-        })
-
+        cy.SetPasswordOTP().then((fdata)=>{
+            resetToken = fdata[0];
+            otp =  fdata[1];
+        });
     })
     it("should reset password",function(){
-
-
+        
         cy.fixture('passwordrecovery').then((data)=>{
             //this.otp = data.otp;
             //this.resetToken = data.reset_token;
@@ -20,12 +17,10 @@ describe("Reset password", function(){
                 "method":"POST",
                 "url":"https://smilemoney-sandbox.renmoney.com/agent/reset_password",
                 "body":{
-                    "otp": this.otp,
-                    "token": this.token,
-                    "password": "chemistry",
+                    "otp": otp,
+                    "token": resetToken,
+                    "password": "NoLimit@2022__",
                     "networkKey": "8437483748343"
-    
-    
                 }
             }).then((response)=>{
     

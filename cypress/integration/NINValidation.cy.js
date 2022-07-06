@@ -11,14 +11,14 @@ describe("NIN Validation",function(){
         })
     })
 
-    it.only("should validate valid NIN",function(){
+    it("should validate valid NIN",function(){
         cy.request({
             method: "POST",
             url: "https://smilemoney-sandbox.renmoney.com/agent/nin_validation",
             failOnStatusCode: false,
             body: {
                 "nin": "34299589242",
-                "bvn": "22716777742"
+                "bvn": "22271677774"
               }
         }).should((response)=>{
             expect(response.status).to.eq(200);

@@ -28,8 +28,8 @@ Cypress.Commands.add('authenticate', (userName, password) => {
         method:'POST', 
         url:'https://smilemoney-sandbox.renmoney.com/agent/login',
         body: {
-            "email": "austin@yopmail.com",
-            "password": "NoLimit@2022",
+            "email": "murrayataga@gmail.com",
+            "password": "NoLimit@2022__",
             "networkKey": "4342424"
         }
       })
@@ -38,4 +38,30 @@ Cypress.Commands.add('authenticate', (userName, password) => {
         return response.body.data.access_token;
       })
     
+  })
+
+  Cypress.Commands.add("SetPasswordOTP",function(){
+    let reset = [];
+    cy.request({
+      "method":"POST",
+      "url" : "https://smilemoney-sandbox.renmoney.com/agent/recover_password",
+      "body" : {
+          "email": "murrayataga@gmail.com",
+          "networkKey": "43434343434"
+      }
+  }).then((response)=>{
+      //perform assertions
+      //save reset token to env variable
+     // expect(response.body.data.token).to.eq(200);
+     cy.task('queryDb2',"select * from v3_Authentication.otp where email = 'murrayataga@gmail.com' ORDER BY created_at DESC;").then((result) =>{
+      
+      let otp = result[0].code;
+      let reset_token = response.body.data.token;
+      reset.push(reset_token,otp);
+      return reset;
+   })
+        
+  })
+
+
   })

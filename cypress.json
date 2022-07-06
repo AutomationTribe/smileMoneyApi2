@@ -1,18 +1,18 @@
 {
-     "env" : {
-        "baseUrl" : "https://smilemoney-sandbox.renmoney.com/",
-        "db" : {
-            "host" : "ren-staging-rds.c2dwhkbupi5n.eu-west-1.rds.amazonaws.com",
-            "user" : "smile-qa",
-            "password" : "qwertz#EDC",
-            "database" : "smilemoney"
-        },
-        "db2" : {
-            "host" : "ren-staging-rds.c2dwhkbupi5n.eu-west-1.rds.amazonaws.com",
-            "user" : "smile-qa",
-            "password" : "qwertz#EDC",
-            "database" : "v3_Authentication"
-        }
-     }
-
+  "env": {
+    "baseUrl": "https://smilemoney-sandbox.renmoney.com/",
+    "db": {
+      "host": "ren-staging-rds.c2dwhkbupi5n.eu-west-1.rds.amazonaws.com",
+      "user": "smile-qa",
+      "password": "qwertz#EDC",
+      "database": "smilemoney"
+    },
+    "db2": {
+      "host": "ren-staging-rds.c2dwhkbupi5n.eu-west-1.rds.amazonaws.com",
+      "user": "smile-qa",
+      "password": "qwertz#EDC",
+      "database": "v3_Authentication"
+    }
+  },
+  "projectId": "dypeub"
 }
