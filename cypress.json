@@ -14,5 +14,14 @@
       "database": "v3_Authentication"
     }
   },
-  "projectId": "dypeub"
+  "projectId": "dypeub",
+  "reporter" : "cypress-mochawesome-reporter",
+  "reporterOptions" : {
+    "reportDir" : "cypress/reports/mochawesome-report",
+    "charts" : true,
+    "reportPageTitle" : "Smile Money API Test Report",
+    "embeddedScreenShots" : true,
+    "inlineAssets" : true
+  },
+  "video" : false
 }

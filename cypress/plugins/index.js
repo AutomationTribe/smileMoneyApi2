@@ -56,6 +56,7 @@ function queryTestDb2(query,config){
 
 module.exports = (on, config) => {
  // tasks = sqlServer.loadDBPlugin(dbConfig.db);
+ require('cypress-mochawesome-reporter/plugin')(on);
   on('task', { queryDb : query => {return queryTestDb(query,config) }});
   on('task', { queryDb2 : query => {return queryTestDb2(query,config) }});
 }

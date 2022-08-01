@@ -5,16 +5,16 @@ describe("Register Agent",function(){
 
         //cy.authenticate().as("authToken");
 
-        cy.task('queryDb',"select * from smilemoney.agent where bvn = 22200279145;").then((result) =>{
+        cy.task('queryDb',"select * from smilemoney.agent where bvn = 22271677774;").then((result) =>{
             
             if(result.length > 0){
 
-                cy.task("queryDb","Delete from smilemoney.agent where bvn = 22200279145").then((result)=>{
-                    cy.log('deleted');
+                cy.task("queryDb","Delete from smilemoney.agent where bvn = 22271677774").then((result)=>{
+                    console.log('deleted');
                 })
 
             }else {
-                cy.log("Not found")
+                console.log("Not found")
             }
 
         })
@@ -77,7 +77,7 @@ describe("Register Agent",function(){
         cy.request({
             method: "POST",
             url:"https://smilemoney-sandbox.renmoney.com/agent/registration",
-            failOnStatusCode: false,
+           
             body:{
                 "email":this.email,
                 "bvn" : this.bvn,

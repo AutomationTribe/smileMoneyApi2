@@ -1,5 +1,5 @@
 ///<reference types="cypress" />
-describe("Test cases for Loan History module",function(){
+describe("Loan History Test Cases",function(){
     let token,phoneNumber;
     before("Log user in",function(){
        cy.authenticate().then((data)=>{

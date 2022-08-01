@@ -29,8 +29,8 @@ Cypress.Commands.add('authenticate', (userName, password) => {
         url:'https://smilemoney-sandbox.renmoney.com/agent/login',
         body: {
             "email": "murrayataga@gmail.com",
-            "password": "NoLimit@2022__",
-            "networkKey": "4342424"
+            "password": "chemistry",
+            "networkKey": "1234"
         }
       })
       .then((response) => {
@@ -63,5 +63,6 @@ Cypress.Commands.add('authenticate', (userName, password) => {
         
   })
 
+  
 
   })

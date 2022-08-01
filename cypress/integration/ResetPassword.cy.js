@@ -19,7 +19,7 @@ describe("Reset password", function(){
                 "body":{
                     "otp": otp,
                     "token": resetToken,
-                    "password": "NoLimit@2022__",
+                    "password": "chemistry",
                     "networkKey": "8437483748343"
                 }
             }).then((response)=>{
@@ -29,8 +29,60 @@ describe("Reset password", function(){
                 expect(response.body.message).to.eq('Password reset succcessful');
             })
         })
+
+        
        
     })
 
+    it("should not reset password with wrong OTP",function(){
+        
+        cy.fixture('passwordrecovery').then((data)=>{
+            //this.otp = data.otp;
+            //this.resetToken = data.reset_token;
+            cy.request({
+                "method":"POST",
+                "url":"https://smilemoney-sandbox.renmoney.com/agent/reset_password",
+                "failOnStatusCode":false, 
+                "body":{
+                    "otp": otp + 5,
+                    "token": resetToken,
+                    "password": "NoLimit@2022__",
+                    "networkKey": "8437483748343"
+                }
+            }).then((response)=>{
+    
+                expect(response.status).to.eq(400);
+                expect(response.body.status).to.eq('failed');
+                expect(response.body.message).to.eq('Invalid OTP');
+            })
+        })    
+    })
+    
+    it("should not reset password with invalid TOKEN",function(){
+        
+        cy.fixture('passwordrecovery').then((data)=>{
+            //this.otp = data.otp;
+            //this.resetToken = data.reset_token;
+            cy.request({
+                "method":"POST",
+                "url":"https://smilemoney-sandbox.renmoney.com/agent/reset_password",
+                "failOnStatusCode" : false,
+                "body":{
+                    "otp": otp,
+                    "token": resetToken + 4,
+                    "password": "NoLimit@2022__",
+                    "networkKey": "8437483748343"
+                }
+            }).then((response)=>{
+    
+                expect(response.status).to.eq(400);
+                expect(response.body.status).to.eq('failed');
+               // expect(response.body.message).to.eq('');
+            })
+        })
+
+        
+       
+    })
 })
 
